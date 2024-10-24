@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zoho Peoples</title>
+    <style>
+        table {
+            width: 60%;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+        
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        h1 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // URL from which to fetch data
+            const url = 'https://example.com/api/employees'; // Replace with your data URL
+
+            // Function to fetch data and update the table
+            function fetchData() {
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        const tableBody = document.getElementById('table-body');
+                        tableBody.innerHTML = ''; // Clear existing data
+
+                        // Iterate over the data and create table rows
+                        data.forEach(item => {
+                            const row = document.createElement('tr');
+                            row.classList.add('mdc-data-table__row');
+
+                            // Create ID cell
+                            const idCell = document.createElement('td');
+                            idCell.classList.add('mdc-data-table__cell');
+                            idCell.textContent = item.id;
+                            row.appendChild(idCell);
+
+                            // Create Employee Name cell
+                            const nameCell = document.createElement('td');
+                            nameCell.classList.add('mdc-data-table__cell');
+                            nameCell.textContent = item.employeeName;
+                            row.appendChild(nameCell);
+
+                            // Create Department cell
+                            const departmentCell = document.createElement('td');
+                            departmentCell.classList.add('mdc-data-table__cell');
+                            departmentCell.textContent = item.department;
+                            row.appendChild(departmentCell);
+
+                            // Append the row to the table body
+                            tableBody.appendChild(row);
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Error fetching data:', error);
+                    });
+            }
+
+            // Call fetchData when the page loads
+            fetchData();
+        });
+    </script>
+    <h1>List of Zoho Peoples</h1>
+    
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Employee Names</th>
+            <th>Department</th>
+        </tr>
+        <tr>
+            <td>101</td>
+            <td>Rahul Sharma</td>
+            <td>IT</td>
+        </tr>
+        <tr>
+            <td>102</td>
+            <td>Anita Verma</td>
+            <td>IT</td>
+        </tr>
+        <tr>
+            <td>103</td>
+            <td>Sanjay Patel</td>
+            <td>Network</td>
+        </tr>
+        <tr>
+            <td>104</td>
+            <td>Priya Nair</td>
+            <td>Database</td>
+        </tr>
+        <tr>
+            <td>105</td>
+            <td>Amit Kumar</td>
+            <td>Security</td>
+        </tr>
+    </table>
+</body>
+</html>
